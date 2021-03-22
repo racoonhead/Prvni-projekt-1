@@ -7,7 +7,7 @@
     <title>My fuckin awesome snake</title>
     <style>
         body {
-            background-color: black;
+            background-color: orange;
             text-align: center;
         }
         canvas{
@@ -41,44 +41,36 @@
     
         //Loop
         function gameLoop(){
-            ctx.fillStyle = "white";
+           moveStuff();          
+           requestAnimationFrame(gameLoop);
+           drawStuff();
+        }
         
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        gameLoop();
+    /**
+     * Move Everything
+     */
+    function moveStuff() {
+    
+        snakePosX += snakeSpeed;
 
-            snakePosX += snakeSpeed;
-
-            if (snakePosX > canvas.width) {
+        if (snakePosX > canvas.width) {
                 snakePosX = 0;
 
-            }
-
-            ctx.fillStyle = "black";
-        
-            ctx.fillRect(snakePosX, snakePosY, snakeSize, snakeSize);
-
-
-            requestAnimationFrame(gameLoop);
-
         }
+    /**
+     * Draw Everything
+     */
+    function drawStuff() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "black";
+        ctx.fillRect(snakePosX, snakePosY, snakeSize, snakeSize);
 
-        gameLoop();
-    
-    function keyPush(event) {
-        switch(event.key){
-            case "ArrowUp":
-                snakePosY -= snakeSpeed
-                break;
-            case "ArrowDown":
-                snakePosY += snakeSpeed
-                break 
-            case "ArrowLeft":
-                snakePosX -= snakeSpeed
-                break
-            case "ArrowRight":
-                snakePosX += snakeSpeed              
-            }
-    }     
+    }
+            
 
+   
 
 
         
